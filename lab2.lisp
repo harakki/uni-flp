@@ -22,8 +22,27 @@
 ;              Например, (a b a a c c) => (b a c).
 
 
-
-
 ; Задание 24 - Определите функцию, переставляющую элементы списка таким образом, чтобы одинаковые элементы
 ;              оказались рядом. Сортировку не использовать!
 ;              Например, (1 5 2 1 4 3 1 2 4 5 4) => (1 1 1 5 5 2 2 4 4 4 3).
+
+(defun exec_24 (lst)
+  (if (null lst)
+      nil
+      (append (find-similar (car lst) lst) 
+              (exec_24 (remove-all (car lst) lst)))))
+
+(defun find-similar (elem lst)
+  (cond
+    ((null lst) nil)
+    ((eq elem (car lst)) (cons elem (find-similar elem (cdr lst))))
+    (t (find-similar elem (cdr lst)))))
+
+(defun remove-all (elem lst)
+  (cond
+    ((null lst) nil)
+    ((eq elem (car lst)) (remove-all elem (cdr lst)))
+    (t (cons (car lst) (remove-all elem (cdr lst))))))
+
+(trace exec_24)
+(print (exec_24 '(1 5 2 1 4 3 1 2 4 5 4) ))
