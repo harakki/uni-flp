@@ -1,0 +1,5 @@
+transport(bus,1,[1,2,3,4,5]).
+transport(bus,2,[1,3,5]).
+transport(bus,3,[2,4]).
+transport(bus,4,[0,7]).
+transport(bus,4,[7,2]).
